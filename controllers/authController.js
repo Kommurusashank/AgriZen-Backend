@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -24,16 +24,16 @@ const register = async (req, res) => {
     });
 
     const userData = {
-  id: user._id,
-  name: user.name,
-  email: user.email,
-  role: user.role,
-};
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
 
-res.status(201).json({
-  message: "Registration Successful",
-  user: userData,
-});
+    res.status(201).json({
+      message: "Registration Successful",
+      user: userData,
+    });
 
   } catch (error) {
     res.status(500).json({
@@ -45,7 +45,6 @@ res.status(201).json({
 // Login
 const login = async (req, res) => {
   try {
-
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -76,17 +75,17 @@ const login = async (req, res) => {
     );
 
     const userData = {
-  id: user._id,
-  name: user.name,
-  email: user.email,
-  role: user.role,
-};
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
 
-res.json({
-  message: "Login Successful",
-  token,
-  user: userData,
-});
+    res.json({
+      message: "Login Successful",
+      token,
+      user: userData,
+    });
 
   } catch (error) {
     res.status(500).json({
